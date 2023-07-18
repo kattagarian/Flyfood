@@ -2,7 +2,7 @@ import time
 
 comeco = time.time()
 
-arquivo = open('C:\\Users\\gutuc\\Desktop\\Matriz.txt', 'r')
+arquivo = open('Matriz.txt', 'r')
 
 n, m = arquivo.readline().split()
 linhas = arquivo.read().splitlines()
