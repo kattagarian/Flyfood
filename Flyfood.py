@@ -44,12 +44,12 @@ def custo(caminhos, ponto_org):
             menor_custo = custo_total
         else:
             if custo_total < menor_custo:
-                custo_total = menor_custo
+                menor_custo = custo_total
                 melhor_caminho = caminho
     return melhor_caminho
 
 def main():
-    arquivo = open('matriz4x5_6.txt', 'r')
+    arquivo = open('matriz4x5_4.txt', 'r')
     n_linhas, n_colunas = arquivo.readline().split() #recebe o numero de linhas e colunas
     linhas = arquivo.read().splitlines() #recebe as linhas
     ponto_org, coords = matriz(n_linhas, n_colunas, linhas) #Chama a funcao matriz que retorna as coordenadas do ponto de inicio e dos pontos de entrega
