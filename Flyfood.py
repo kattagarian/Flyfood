@@ -1,9 +1,11 @@
-def matriz(n_linhas, n_colunas, linhas):
+from time import process_time_ns
+import resource
+# Pega os pontos e coordenadas
+def matriz(n, m, linhas):
     ponto_org, coords = [], []
-    # Pega os pontos e coordenadas
-    for i in range(int(n_linhas)):
+    for i in range(int(n)):
         linha = linhas[i].split()
-        for j in range(int(n_colunas)):
+        for j in range(int(m)):
             if linha[j] != '0':
                 if linha[j] == 'R':
                     ponto_org.append([i, j])
@@ -28,11 +30,10 @@ def distancia(pi, pj):
     dist = abs(pi[0] - pj[0]) + abs(pi[1] - pj[1])
     return dist
 
-def custo(caminhos, ponto_org):
+def custo(ponto_org, caminhos):
     menor_custo = None
     melhor_caminho = None
     for caminho in caminhos:
-        #print(caminho[0][0])
         saida = distancia(ponto_org[0], caminho[0][0])
         volta = distancia(caminho[len(caminho)-1][0], ponto_org[0])
         custo = 0
@@ -49,44 +50,20 @@ def custo(caminhos, ponto_org):
     return melhor_caminho
 
 def main():
-    arquivo = open('matriz4x5_4.txt', 'r')
-    n_linhas, n_colunas = arquivo.readline().split() #recebe o numero de linhas e colunas
-    linhas = arquivo.read().splitlines() #recebe as linhas
-    ponto_org, coords = matriz(n_linhas, n_colunas, linhas) #Chama a funcao matriz que retorna as coordenadas do ponto de inicio e dos pontos de entrega
-    caminhos = permutacao(coords)
-    test = custo(caminhos, ponto_org)
-    print([x[1] for x in test])
+    soma = 0
+    for i in range(30):
+        comeco = process_time_ns()
+        arquivo = open('entrada10.txt', 'r')
+        n, m = arquivo.readline().split()
+        linhas = arquivo.read().splitlines()
+        ponto_org, coords = matriz(n, m, linhas)    
+        caminhos = permutacao(coords)
+        melhor_caminho = custo(ponto_org, caminhos)
+        #print([x[1] for x in melhor_caminho])
 
-#def func_test(arquivo):
-#    comeco = time() #começa o contador de tempo
-    #arquivo = open('matriz4x5_9.txt', 'r') #input
-#   
-#   
-#    caminhos = permutacao(coords) #recebe todos os caminhos possiveis
-#    print(custo(caminhos, ponto_org)) #Recebe o menor custo e o caminho de menor custo em coordenadas
-#    tempo = time() - comeco # termina o contador de tempo
-#    print(f"O tempo de execução foi: {tempo} segundos")
-
-#def main():
-#    tamanho_da_fonte=24
-#    arquivos = 6
-#    lista_tempos = [0] * arquivos 
-#    lista_pontos = list(range(4, 10))
-#    #print(lista_tempos)
-#    #print(lista_pontos)
-#    for i in range(4, 10):
-#        tic = process_time()
-#        func_test(open(f'matriz4x5_{i}.txt', 'r'))
-#        toc = process_time()
-#        lista_tempos[i-4]= toc-tic
-#    #print(lista_pontos)
-#    #print(lista_tempos)
-#    plt.plot(lista_pontos, lista_tempos, "g-", linewidth=2)
-#    plt.xlabel("Numero de paradas (n)", fontsize=tamanho_da_fonte)
-#    plt.ylabel("Tempo (s)", fontsize=tamanho_da_fonte)
-#    plt.title("T(n) do flyfood", fontsize=tamanho_da_fonte)
-#    plt.savefig("foo.png")
-
-
-if __name__ == "__main__":
-    main()
+        fim = process_time_ns()
+        #print(f"O tempo de execução foi: {fim - comeco} nanosegundos")
+        soma = soma + (fim - comeco)
+    print(f"A media foi: {soma/30}")
+    print(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
+main()
