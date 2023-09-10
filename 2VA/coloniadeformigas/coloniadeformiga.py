@@ -154,9 +154,8 @@ print(f"100.0% iteração = {iteracoes} - {execucao:.3f}s")
 #cria um array 2d com as coordenadas da melhor rota
 melhorRota_cidades = [cidades[i] for i in melhorRota]
 melhorRota_cidades = np.array(melhorRota_cidades)
-print(melhoresDistancias)
 #imprime a melhor distancia
-print(f'{melhorDistancia:.0f}')
+print(f'Melhor Distância: {melhorDistancia:.0f} | Tempo: {execucao:.3f}s')
 #plot com as melhores distancias por iteracao
 plotIterDistancias(melhoresDistancias, alfa, beta, rho)
 #plot com o caminho feito
