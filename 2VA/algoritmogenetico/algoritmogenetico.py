@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import math, random, time
 
 def lerEntrada():
-    arquivo = open('berlin52.tsp')    #substituir por matriztsp7.tsp para entradas pequenas e berlin52.tsp para entradas grandes
+    arquivo = open('ch130.tsp')    #substituir por matriztsp7.tsp para entradas pequenas e berlin52.tsp para entradas grandes
     arquivo = arquivo.readlines()       #coloca cada linha em uma lista diferente
     aux = coords = []
     for i in range(6, len(arquivo)):    #começa o loop a partir da sexta linha onde começam as coordenadas
@@ -111,9 +111,9 @@ def algoritmo_genetico(geracoes, tamanho_populacao, coords, matriz, taxa_mutacao
 
 def main():
     inicio = time.time()
-    geracoes = 100  #quantas vezes o algoritmo será rodado
+    geracoes = 500 #quantas vezes o algoritmo será rodado
     tamanho_populacao = 200 #quantos indivíduos serão gerados
-    taxa_mutacao = 0.05 #a probabilidade de um filho sofrer mutação
+    taxa_mutacao = 1.0 #a probabilidade de um filho sofrer mutação
     coords = lerEntrada()   # entrada com as coordenadas da cidade
     cidades = np.array(coords)  #array em 2D com as coordenadas da cidade
     matriz = matrizes(coords, len(coords))  #matriz distancia
@@ -122,9 +122,9 @@ def main():
     melhorRota_cidades = [cidades[i] for i in melhorCaminho]
     melhorRota_cidades = np.array(melhorRota_cidades)
     execucao = time.time() - inicio
+    print(f"Melhor Distancia: {melhorDistancia:.2f} | Tempo: {execucao:.3f}s | gerações: {geracoes} | população: {tamanho_populacao} | mutação: {taxa_mutacao}")
     plotIterDistancias(melhoresDistancias, geracoes, tamanho_populacao, taxa_mutacao)
     plotCaminho(melhorRota_cidades, cidades, geracoes, tamanho_populacao, melhorDistancia, taxa_mutacao)
-    print(f"Melhor Distancia: {melhorDistancia:.2f} | Tempo: {execucao:.3f}s")
 
 if __name__ == "__main__":
     main()

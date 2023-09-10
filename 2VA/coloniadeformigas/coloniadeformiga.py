@@ -60,11 +60,11 @@ rho = random.choice([0, 0.001, 0.01, 0.05, 0.1, 0.2, 0.5])       #taxa de evapor
 Q = 100         #uma constante relacionada à quantidade de trilha deixada pelas formigas default: 100'''
 
 #HIPERPARAMETROS BERLIN52
-formigas = 20  #numero de formigas que percorrerão os caminhos a cada iteração default: 30
-iteracoes = 50 #numero de iteracoes a serem executadas default: 200
-alfa = 1        #quanto maior o alfa, mais o feromônio vai impactar default: 1
-beta = 5        #quanto maior o beta, mais a distância vai impactar default: 5
-rho = 0.5         #taxa de evaporação default: 0.5
+formigas = 200  #numero de formigas que percorrerão os caminhos a cada iteração default: 30
+iteracoes = 300 #numero de iteracoes a serem executadas default: 200
+alfa = 2        #quanto maior o alfa, mais o feromônio vai impactar default: 1
+beta = 1        #quanto maior o beta, mais a distância vai impactar default: 5
+rho = 0.0         #taxa de evaporação default: 0.5
 Q = 100         #uma constante relacionada à quantidade de trilha deixada pelas formigas default: 100
 
 '''#HIPERPARAMETROS ENTRADAS PEQUENAS
@@ -135,7 +135,6 @@ for i in range(iteracoes):
             #se sim, pega a melhor distancia e melhor rota
             melhorDistancia = distanciaTotal
             melhorRota = rota
-    
     #atualiza a matriz feromonio de acordo com a evaporação
     matrizFeromonio = matrizFeromonio * (1.0 - rho)
     for formiga, rota in enumerate(caminhoFormiga):
