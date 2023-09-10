@@ -106,6 +106,7 @@ def algoritmo_genetico(geracoes, tamanho_populacao, coords, matriz, taxa_mutacao
         #print(f"Geração {geracao}: Melhor Caminho = {fitness(melhorCaminho, matriz)}")
         melhoresDistancias.append(fitness(melhorCaminho, matriz))
     melhorCaminho = min(populacao, key=lambda x: fitness(x, matriz))
+    melhorCaminho.append(melhorCaminho[0])
     return melhorCaminho, fitness(melhorCaminho, matriz), melhoresDistancias
 
 def main():
