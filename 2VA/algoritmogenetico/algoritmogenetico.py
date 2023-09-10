@@ -123,7 +123,7 @@ def main():
     execucao = time.time() - inicio
     plotIterDistancias(melhoresDistancias, geracoes, tamanho_populacao, taxa_mutacao)
     plotCaminho(melhorRota_cidades, cidades, geracoes, tamanho_populacao, melhorDistancia, taxa_mutacao)
-    print(f"Melhor Distancia: {melhorDistancia:.2f}, tempo: {execucao:.3f}s")
+    print(f"Melhor Distancia: {melhorDistancia:.2f} | Tempo: {execucao:.3f}s")
 
 if __name__ == "__main__":
     main()
