@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import math, random, time
 
 def lerEntrada():
-    arquivo = open('berlin10.tsp')    #substituir por matriztsp7.tsp para entradas pequenas e berlin52.tsp para entradas grandes
+    arquivo = open('berlin52.tsp')    #substituir por matriztsp7.tsp para entradas pequenas e berlin52.tsp para entradas grandes
     arquivo = arquivo.readlines()     #coloca cada linha em uma lista diferente
     aux = coords = []
     for i in range(6, len(arquivo)):    #começa o loop a partir da sexta linha onde começam as coordenadas
@@ -31,7 +31,7 @@ def plotIterDistancias(melhoresDistancias, alfa, beta, rho):
     plt.title(f'Melhores distâncias | alfa: {alfa}, beta: {beta}, rho: {rho}')
     plt.grid(True)
     #plt.show(block=False)
-    plt.savefig("plota{alfa}b{beta}rho{rho}f{formigas}i{iteracoes}.png")
+    plt.savefig(f"totalDistanciasA{alfa}b{beta}rho{rho}f{formigas}i{iteracoes}.png")
 
 def plotCaminho(melhorRota_cidades, cidades, alfa, beta, rho):
     #plot do melhor caminho
@@ -45,7 +45,7 @@ def plotCaminho(melhorRota_cidades, cidades, alfa, beta, rho):
     plt.legend()
     plt.title(f'Melhor Solução: {melhorDistancia:.2f} | alfa: {alfa}, beta: {beta}, evaporação: {rho}, formigas: {formigas}, iteracoes: {iteracoes}')
     plt.grid(True)
-    plt.savefig("plot2a{alfa}b{beta}rho{rho}f{formigas}i{iteracoes}.png")
+    plt.savefig(f"caminhoa{alfa}b{beta}rho{rho}f{formigas}i{iteracoes}.png")
 
 coords = lerEntrada()       #recebe a entrada
 cidades = np.array(coords)  #array em 2D com as coordenadas da cidade
